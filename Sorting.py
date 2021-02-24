@@ -3,14 +3,14 @@ import pygame as pg
 
 class Rectangle():
     def __init__(self, pos_y):
-        self.y = 20 * pos_y
+        self.y = 25 * pos_y + 5
         self.x = 0
         self.size_x = elements[pos_y]
         self.size_y = 20
         self.colour = (0, 0, 0)
 
     def drawing(self, pos_y, colour):
-        pg.draw.rect(window, colour, (0, pos_y * 20, elements[pos_y], 20))
+        pg.draw.rect(window, colour, (0, pos_y * 25 + 5, elements[pos_y], 20))
 
 
     def change(self, first, second):
@@ -66,12 +66,17 @@ class Rectangle():
 
 
 elements = list(map(int, input().split()))
+maximum = max(elements)
+for i in range(len(elements)):
+    elements[i] = round(elements[i] / maximum * 1000)
+
+
 rectangles = dict()
 sort = False
 
 
 pg.init()
-window = pg.display.set_mode((1000, len(elements) * 20))
+window = pg.display.set_mode((1000, len(elements) * 25 + 5))
 window.fill((255, 255, 255))
 
 
